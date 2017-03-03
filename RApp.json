@@ -1,0 +1,137 @@
+{
+"protocolVersion":"2.0",
+"provider": {
+"name": "Sygnal",
+"info": "Sygnal is the leading telephony contact management system....",
+"url": "http://sygnal.net/call-now ",
+"logo": "http://sygnal.net/call-now/logo/small.png"
+},
+"application": {
+"name": "Call Now",
+"description": "Call Now is Sygnal’s automated phone campaign service....",
+"icon": "https://app.sygnal.net/call-now/v2 /icon/gray.png",
+"errorIcon": "https://app.sygnal.net/call-now/v2/icon/error.png",
+"disabledIcon": "https://app.sygnal.net/call-now/v2/icon/disabled.png",
+"installUrl": "https://app.sygnal.net/call-now/v2/install?accountId=${environment.accountId}",
+"activateUrl": "https://app.sygnal.net/call-now/v2/activate?accountId=${environment.accountId}",
+"statusUrl": "https://app.sygnal.net/call-now/v2/status?accountId=${environment.accountId}",
+"notifyUrl": "https://app.sygnal.net/call-now/v2/notify?accountId=${environment.accountId}",
+"accountNames":["durham_1", "durham_2", "durham_3"]
+}
+},
+"defaultRecordDefinition": {
+"CUSTOMER_ID": "${CUSTOMER_ID_}"
+},
+"configuration": {
+"systemConfig": {
+"maxMessagesPerSec": "10000",
+"maxConcurrentConnections": "10",
+"maxOutboundBatchSize":"1000",
+"defaultReleaseTimeoutDays":"7"
+},
+"actions": [
+{
+"name": "Add to Campaign & Get Info",
+"outboundParameters": [
+{
+"name": "CustomerID",
+"displayName": "Customer ID",
+"defaultValue": "${CUSTOMER_ID_?skip}",
+"showValue": "h"
+},
+{
+"name": "OptInFilter",
+"displayName": "Opt-In Filter",
+"defaultValue": "${CALL_PERMISSION_STATUS?skip}",
+"showValue": "rw"
+},
+{
+"name": "PrimaryPhone",
+"displayName": "Primary Phone Number",
+"defaultValue": "${MOBILE_NUMBER_?skip}",
+"showValue": "rw"
+},
+{
+"name": "CampaignID",
+"displayName": "Add to this Call Campaign",
+"defaultValue": "",
+"showValue": "rw"
+}
+]
+"inboundParameters" : [
+{
+"name": "ValidPhone",
+"displayName": "Valid Phone",
+"type": "TEXT"
+},
+{
+"name": "TimeOfCall",
+"displayName": "Time of Call",
+"type": "DATETIME"
+},
+{
+"name": "ResponseValue",
+"displayName": "Response Value",
+"type": "NUMBER"
+}
+]
+},
+{
+"name": "Add to Campaign only",
+"outboundParameters" : [
+{
+"name": "CustomerID",
+"displayName": "Customer ID",
+"defaultValue": "${CUSTOMER_ID_?skip}",
+"showValue": "h"
+},
+{
+"name": "OptInFilter",
+"displayName": "Opt-In Filter",
+"defaultValue": "${CALL_PERMISSION_STATUS?skip}",
+"showValue": "rw"
+},
+{
+"name": "PrimaryPhone",
+"displayName": "Primary Phone Number",
+"defaultValue": "${MOBILE_NUMBER_?skip}",
+"showValue": "rw"
+},
+{
+"name": "CampaignID",
+"displayName": "Add to this Call Campaign",
+"defaultValue": "",
+"showValue": "rw"
+}
+],
+},
+{
+"name": "Get Info only",
+"outboundParameters" : [
+{
+"name": "CustomerID",
+"displayName": "Customer ID",
+"defaultValue": "${CUSTOMER_ID_?skip}",
+"showValue": "h"
+}
+],
+"inboundParameters" : [
+{
+"name": "ValidPhone",
+"displayName": "Valid Phone",
+"type": "TEXT"
+},
+{
+"name": "TimeOfCall",
+"displayName": "Time of Call",
+"type": "DATETIME"
+},
+{
+"name": "ResponseValue",
+"displayName": "Response Value",
+"type": "NUMBER"
+}
+]
+}
+]
+}
