@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title></title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">.spantext {
+      color:#ff9b26;
+      }
+    </style>
+  </head>
+  <body style="
+               -webkit-background-size: cover;
+               -moz-background-size: cover;
+               -o-background-size: cover;
+               background-size: cover;">
+    <div>
+      <div style="text-align:center;border-width:3px;width:500px;border-style:solid;border-color:#f56b2a; margin: auto;background-color:#f56b2a;padding-top: 5px;padding-bottom: 5px;"><font color="white">OFFRE SPECIALE!</font>
+      </div>
+      <div style="text-align:center;border-width:3px;width:500px;border-style:solid; margin: auto;background-color#ecf0f1;">
+        <br />
+        <br />
+        <span>Facile, Rapide, Pratique !</span> Gr&acirc;ce &agrave; l'achat de cr&eacute;dits, vous pr&eacute;-chargez votre Compte Personnel du montant de votre choix. Vous n'aurez ainsi plus besoin de saisir vos coordonn&eacute;es bancaires &agrave; chaque d&eacute;p&ocirc;t d'annonce et achat d'option sur le site ou les applications. Vous gagnez du temps et g&eacute;rez ainsi mieux votre budget.
+        <br />
+        <br />
+        <br />
+        <a href="#fakelink" style="background-position: 0px 0px;
+                                   box-sizing: border-box;
+                                   color: #ffffff;
+                                   cursor: pointer;
+                                   height: 45px;
+                                   text-align: center;
+                                   text-decoration: none solid rgb(255, 255, 255);
+                                   text-size-adjust: 100%;
+                                   vertical-align: middle;
+                                   width: 212.5px;
+                                   column-rule-color: rgb(255, 255, 255);
+                                   perspective-origin: 106.25px 22.5px;
+                                   transform-origin: 106.25px 22.5px;
+                                   user-select: none;
+                                   caret-color: rgb(255, 255, 255);
+                                   background: #f56b2a none repeat scroll 0px 0px / auto padding-box border-box;
+                                   border: 0px none rgb(255, 255, 255);
+                                   border-radius: 6px 6px 6px 6px;
+                                   font: normal normal normal normal 17px / 25.007px Lato, Helvetica, Arial, sans-serif;
+                                   outline: rgb(255, 255, 255) none 0px;
+                                   padding: 10px 19px;
+                                   transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;">J'en profite</a>
+        <br />
+        <br />
+        &nbsp;
+      </div>
+    </div>
+  </body>
+</html>
