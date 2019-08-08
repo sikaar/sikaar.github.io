@@ -1,0 +1,58 @@
+<html>
+<head>
+    <script type="text/javascript">
+        var _elqQ = _elqQ || [];
+        _elqQ.push(['elqSetSiteId', '123']);
+        _elqQ.push(['elqTrackPageView']);
+
+        (function () {
+            function async_load() {
+                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+                s.src = '//img.en25.com/i/elqCfg.min.js';
+                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+            }
+            if (window.attachEvent) { window.attachEvent('onload', async_load); }
+            else { window.addEventListener('DOMContentLoaded', async_load, false); }
+        })();
+    </script>
+    <script type="text/javascript">
+        function CreateRow(label, value) {
+            var p = document.createElement('p');
+            var b = document.createElement('b');
+            var label = document.createTextNode(label);
+            var value = document.createTextNode(value);
+            p.appendChild(b);
+            b.appendChild(label);
+            p.appendChild(value);
+
+            document.getElementById('contactinfo').appendChild(p);
+        }
+
+        function SetElqContent() {
+            CreateRow('Contact Info: ', GetElqContentPersonalizationValue(''));
+            CreateRow('First Name: ', GetElqContentPersonalizationValue('C_FirstName'));
+            CreateRow('Last Name: ', GetElqContentPersonalizationValue('C_LastName'));
+            CreateRow('Email Address: ', GetElqContentPersonalizationValue('C_EmailAddress'));
+            CreateRow('Salesperson: ', GetElqContentPersonalizationValue('C_Salesperson'));
+            CreateRow('Company: ', GetElqContentPersonalizationValue('C_Company'));
+            CreateRow('Address 1: ', GetElqContentPersonalizationValue('C_Address1'));
+            CreateRow('City: ', GetElqContentPersonalizationValue('C_City'));
+            CreateRow('State or Province: ', GetElqContentPersonalizationValue('C_State_Prov'));
+            CreateRow('Zip or Postal Code: ', GetElqContentPersonalizationValue('C_Zip_Postal'));
+            CreateRow('Business Phone: ', GetElqContentPersonalizationValue('C_BusPhone'));
+            CreateRow('Country: ', GetElqContentPersonalizationValue('C_Country'));
+            CreateRow('Industry: ', GetElqContentPersonalizationValue('M_Industry1'));
+            CreateRow('Revenue: ', GetElqContentPersonalizationValue('M_Revenue1'));
+            CreateRow('Website: ', GetElqContentPersonalizationValue('M_WebSite1'));
+            CreateRow('Date Created: ', GetElqContentPersonalizationValue('M_DateCreated'));
+        }
+
+        _elqQ.push(['elqDataLookup', escape('434C5E6250C04FCBB0D4FC5413F9A40A'), '
+<C_EmailAddress>sikaar.keita@oracle.com</C_EmailAddress>']);
+    </script>
+</head>
+<body>
+    <div id="contactinfo">
+    </div>
+</body>
+</html>
