@@ -1,0 +1,51 @@
+function addCube() {
+  var pts=[];
+  pts = randomPoint();
+  console.log('One point');
+  //console.log(pts);
+    var x = pts.x;
+    var y = pts.y + Math.random();
+    var z = pts.z;
+   var pos = x.toFixed(2) + ' ' + y.toFixed(2) + ' ' + z.toFixed(2);
+  console.log(pos);
+return pos;
+}
+
+
+function randomPoint()
+{
+    let xt = Math.random() - 0.5;
+    let yt = Math.random() - 0.5;
+  let zt = Math.random() - 0.5;
+    var k = Math.sqrt(xt*xt + yt*yt + zt*zt);
+    while (k < 0.2 || k > 0.3)
+    {
+        xt = Math.random() - 0.5;
+        yt = Math.random() - 0.5;
+        zt = Math.random() - 0.5;
+        k = Math.sqrt(xt*xt + yt*yt + zt*zt);
+    }
+    return {'x':xt/k, 'y':yt/k, 'z':zt/k};
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+
+AFRAME.registerComponent('containerent', {
+  update: function () {
+    let container = this.el;
+for (var i=0; i<50; i++)
+{
+console.log("adding one");
+console.log("<a-sphere radius=.1 color=" + getRandomColor() +" position=" + addCube() + "></a-sphere>");
+this.el.innerHTML += "<a-plane scale='.2 .2 .2' color=" + getRandomColor() +" position='" + addCube() + "' look-at='#player'> <a-entity text='width: 4; color: #ffffff; value: HOME; align: center' position ='0 0 1' background='color: #ffffff'></a-entity></a-plane>";
+}
+  }
+});
