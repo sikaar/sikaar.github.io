@@ -36,3 +36,8 @@ function getRandomColor() {
   }
   return color;
 }
+
+function getRandomTexture() {
+  var i = Math.floor(Math.random() * 10);
+  return "'#Texture" + i + "'";
+}
