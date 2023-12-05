@@ -28,13 +28,29 @@ function randomPoint()
     return {'x':xt/k, 'y':yt/k, 'z':zt/k};
 }
 
-function getRandomColor() {
+/*function getRandomColor() {
   var letters = '0123456789ABCDEF';
   var color = '#';
   for (var i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
+}*/
+function getRandomColor() {
+  var cols = ['#1E90FF',
+'#6495ED',
+'#483D8B',
+'#4169E1',
+'#0000FF',
+'#0000CD',
+'#00008B',
+'#000080',
+'#191970',
+'#1434A4',
+'#4682B4'
+];
+  var i = Math.floor(Math.random() * cols.length-1)
+  return cols[i];
 }
 
 function getRandomTexture() {
