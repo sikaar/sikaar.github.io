@@ -5,3 +5,4 @@ btn.addEventListener('click', () => {
 
  leftdoor.emit("enter");
  rightdoor.emit("enter"); 
+}
