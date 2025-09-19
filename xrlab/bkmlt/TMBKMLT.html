@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Preview Bookmarklet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .bookmarklet-link {
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .bookmarklet-link:hover {
+            transform: translateY(-2px);
+        }
+        .bookmarklet-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #007acc, #005a9e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+        }
+        .instructions {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #007acc;
+            margin: 20px 0;
+        }
+        .step {
+            margin: 10px 0;
+        }
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #007acc;
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 14px;
+            line-height: 24px;
+            margin-right: 10px;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #007acc;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Preview Bookmarklet</h1>
+        
+        <p style="text-align: center;">
+            <a href="javascript:(function(){function decodeHTMLEntities(text){const textarea=document.createElement('textarea');textarea.innerHTML=text;return textarea.value;}function showHTMLPreview(htmlCode,title='HTML Preview'){const existingPanel=document.getElementById('html-preview-panel');if(existingPanel){existingPanel.remove();document.body.style.marginRight='0';}document.body.style.marginRight='33.33vw';document.body.style.transition='margin-right 0.3s ease';const sidePanel=document.createElement('div');sidePanel.id='html-preview-panel';sidePanel.style.cssText='position:fixed;top:0;right:0;width:33.33vw;height:100vh;background:white;border-left:2px solid #ddd;z-index:10000;display:flex;flex-direction:column;font-family:Arial,sans-serif;box-shadow:-2px 0 10px rgba(0,0,0,0.1);';const header=document.createElement('div');header.style.cssText='background:#f5f5f5;padding:15px 20px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;align-items:center;min-height:50px;box-sizing:border-box;';const titleElement=document.createElement('h3');titleElement.textContent=title;titleElement.style.cssText='margin:0;color:#333;font-size:16px;';const closeButton=document.createElement('button');closeButton.innerHTML='✕';closeButton.style.cssText='background:none;border:none;font-size:18px;cursor:pointer;color:#666;padding:5px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;';closeButton.onmouseover=()=&gt;closeButton.style.background='#e0e0e0';closeButton.onmouseout=()=&gt;closeButton.style.background='none';header.appendChild(titleElement);header.appendChild(closeButton);const previewFrame=document.createElement('iframe');previewFrame.style.cssText='width:100%;flex:1;border:none;background:white;';function loadHTMLIntoIframe(){try{const doc=previewFrame.contentDocument||previewFrame.contentWindow?.document;if(doc){doc.open();doc.write(htmlCode);doc.close();}else{previewFrame.srcdoc=htmlCode;}}catch(error){console.warn('Failed to write to iframe, using srcdoc fallback:',error);previewFrame.srcdoc=htmlCode;}}setTimeout(loadHTMLIntoIframe,10);sidePanel.appendChild(header);sidePanel.appendChild(previewFrame);function closeSidePanel(){sidePanel.style.transform='translateX(100%)';sidePanel.style.transition='transform 0.3s ease';document.body.style.marginRight='0';setTimeout(()=&gt;sidePanel.remove(),300);}closeButton.addEventListener('click',closeSidePanel);const escapeHandler=(e)=&gt;{if(e.key==='Escape'){closeSidePanel();document.removeEventListener('keydown',escapeHandler);}};document.addEventListener('keydown',escapeHandler);document.body.appendChild(sidePanel);console.log('HTML Preview panel created!');}function isHTMLContent(content){const checks=[/&lt;\s*!doctype/i,/&lt;\s*html/i,/&lt;\s*head/i,/&lt;\s*body/i,/&lt;\s*div/i,/&lt;\s*h[1-6]/i,/&lt;\s*p\s*&gt;/i,/&lt;\s*script/i,/&lt;\s*style/i];return checks.some(regex=&gt;regex.test(content));}function extractHTMLFromChatGPT(codeElement){const chatGPTLines=codeElement.querySelectorAll('div.css-woe3og');if(chatGPTLines.length&gt;0){console.log(`Found ${chatGPTLines.length} ChatGPT code lines`);let htmlContent='';chatGPTLines.forEach(line=&gt;{htmlContent+=line.textContent+'\n';});return decodeHTMLEntities(htmlContent.trim());}const allDivs=codeElement.querySelectorAll('div');if(allDivs.length&gt;5){console.log(`Found ${allDivs.length} div elements, trying extraction`);let htmlContent='';allDivs.forEach(div=&gt;{htmlContent+=div.textContent+'\n';});const decoded=decodeHTMLEntities(htmlContent.trim());if(isHTMLContent(decoded)){return decoded;}}const rawText=codeElement.textContent||codeElement.innerText;return decodeHTMLEntities(rawText);}function addPreviewButtons(){document.querySelectorAll('.html-preview-btn').forEach(btn=&gt;btn.remove());const codeBlocks=document.querySelectorAll('code');console.log(`Found ${codeBlocks.length} code blocks`);let buttonsAdded=0;codeBlocks.forEach((codeBlock,index)=&gt;{const extractedHTML=extractHTMLFromChatGPT(codeBlock);if(isHTMLContent(extractedHTML)){console.log(`Code block ${index+1} contains HTML (${extractedHTML.length} chars)`);const previewBtn=document.createElement('button');previewBtn.className='html-preview-btn';previewBtn.innerHTML='👁️ Preview';previewBtn.style.cssText='position:absolute;top:8px;right:8px;background:#007acc;color:white;border:none;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.2);transition:all 0.2s;z-index:1000;font-family:Arial,sans-serif;';previewBtn.onmouseover=()=&gt;{previewBtn.style.background='#005a9e';previewBtn.style.transform='translateY(-1px)';};previewBtn.onmouseout=()=&gt;{previewBtn.style.background='#007acc';previewBtn.style.transform='translateY(0)';};previewBtn.addEventListener('click',(e)=&gt;{e.preventDefault();e.stopPropagation();showHTMLPreview(extractedHTML,`HTML Code ${index+1}`);});let container=codeBlock.closest('.css-1ry7cdd')||codeBlock.closest('pre')||codeBlock.parentElement;const originalPosition=getComputedStyle(container).position;if(originalPosition==='static'){container.style.position='relative';}container.appendChild(previewBtn);buttonsAdded++;}});console.log(`✅ Added ${buttonsAdded} preview buttons`);if(buttonsAdded===0){console.log('No HTML code blocks found. You can still use: renderHTML(&quot;&lt;h1&gt;Test&lt;/h1&gt;&quot;)');}}window.renderHTML=function(htmlCode,title){if(!htmlCode||typeof htmlCode!=='string'){console.error('Please provide valid HTML code as a string');return;}showHTMLPreview(htmlCode,title||'Custom HTML');};console.log('🚀 ChatGPT HTML Preview Bookmarklet loaded!');addPreviewButtons();const observer=new MutationObserver((mutations)=&gt;{let shouldRerun=false;mutations.forEach((mutation)=&gt;{if(mutation.addedNodes.length&gt;0){mutation.addedNodes.forEach((node)=&gt;{if(node.nodeType===Node.ELEMENT_NODE&amp;&amp;(node.tagName==='CODE'||node.querySelector('code'))){shouldRerun=true;}});}});if(shouldRerun){setTimeout(addPreviewButtons,500);}});observer.observe(document.body,{childList:true,subtree:true});})();" class="bookmarklet-link">
+                <div class="bookmarklet-icon">👁️</div>
+            </a>
+        </p>
+        
+        <p style="text-align: center; margin-top: 10px; font-size: 14px; color: #666;">
+            <strong>HTML Preview</strong><br>
+            Drag to bookmarks bar to install
+        </p>
+
+        <div class="instructions">
+            <h2>Installation Instructions</h2>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Drag the icon above to your bookmarks bar</strong> (or right-click → "Bookmark this link")
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Visit any page with HTML code</strong> (ChatGPT, tutorials, documentation, etc.)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Click the bookmarklet</strong> in your bookmarks bar
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Look for "👁️ Preview" buttons</strong> on HTML code blocks
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>Click preview buttons</strong> to see rendered HTML in a side panel
+            </div>
+        </div>
+ </div>
+</body>
+</html>
